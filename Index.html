@@ -15,7 +15,8 @@
       height: 1920px;
       margin: 0 auto;
       overflow: hidden;
-      border: 5px solid rgb(0, 0, 0);
+      border: 5px solid red;
+      position: relative;
     }
     .scroll-container {
       width: 100%;
@@ -30,15 +31,17 @@
     .scroll-content {
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
     .card {
-      width: 100%;
-      height: calc(1920px / 3);
+      width: 1080px;
+      height: 1080px;
       flex-shrink: 0;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
+
     .c1 { background-image: url('Img/1950s.jpg'); }
     .c2 { background-image: url('Img/1960s.jpg'); }
     .c3 { background-image: url('Img/1970s.jpg'); }
@@ -47,9 +50,36 @@
     .c6 { background-image: url('Img/2000s.jpg'); }
     .c7 { background-image: url('Img/2010s.jpg'); }
     .c8 { background-image: url('Img/2020s.jpg'); }
+
+    /* Expanded Wheel Overlay Effects */
+    .wheel-overlay-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 540px; /* Increased from 420px to 540px */
+      background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 80%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+      
+    }
+    .wheel-overlay-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 540px; /* Increased from 420px to 540px */
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 80%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+      
+    }
   </style>
 </head>
 <body>
+  <div class="wheel-overlay-top"></div>
+  <div class="wheel-overlay-bottom"></div>
+
   <div class="scroll-container" id="scrollContainer">
     <div class="scroll-content" id="scrollContent">
       <div class="card c1"></div>
@@ -67,34 +97,60 @@
     const container = document.getElementById('scrollContainer');
     const content = document.getElementById('scrollContent');
 
-    content.innerHTML += content.innerHTML;
+    // Duplicate content twice (3 full sets total) to allow seamless wrapping in both directions
+    const originalHTML = content.innerHTML;
+    content.innerHTML = originalHTML + originalHTML + originalHTML;
 
-    let isAutoScrolling = true;
-    const speed = 2;
+    const cardHeight = 1080;
+    const viewportHeight = 1920;
+    const centerOffset = (viewportHeight - cardHeight) / 2; // 420px offset
+    const singleSetHeight = cardHeight * 8; // Height of 8 cards (8640px)
+    const pauseDuration = 6000;
+    const scrollDuration = 1000;
+    
+    let isMoving = false;
 
-    function autoScroll() {
-      if (isAutoScrolling) {
-        container.scrollTop += speed;
+    // Start centered on 1950s of the middle set
+    const initialScrollTop = singleSetHeight - centerOffset;
+    container.scrollTop = initialScrollTop;
+
+    function stepScroll() {
+      if (isMoving) return;
+      isMoving = true;
+
+      const startScrollTop = container.scrollTop;
+      const startTime = performance.now();
+
+      function animateScroll(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / scrollDuration, 1);
+        
+        const easeProgress = progress < 0.5 
+          ? 4 * progress * progress * progress 
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        // Scroll forward down through the sequence
+        container.scrollTop = startScrollTop + (cardHeight * easeProgress);
+
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          // Wrap seamlessly when crossing the boundary
+          if (container.scrollTop >= (singleSetHeight * 2) - centerOffset) {
+            container.scrollTop -= singleSetHeight;
+          }
+          
+          setTimeout(() => {
+            isMoving = false;
+            stepScroll();
+          }, pauseDuration);
+        }
       }
 
-      if (container.scrollTop >= content.scrollHeight / 2) {
-        container.scrollTop -= content.scrollHeight / 2;
-      } else if (container.scrollTop <= 0) {
-        container.scrollTop += content.scrollHeight / 2;
-      }
-
-      requestAnimationFrame(autoScroll);
+      requestAnimationFrame(animateScroll);
     }
 
-    container.addEventListener('scroll', () => {
-      if (container.scrollTop >= content.scrollHeight / 2) {
-        container.scrollTop -= content.scrollHeight / 2;
-      } else if (container.scrollTop <= 0) {
-        container.scrollTop += content.scrollHeight / 2;
-      }
-    });
-
-    autoScroll();
+    setTimeout(stepScroll, pauseDuration);
   </script>
 </body>
 </html>
