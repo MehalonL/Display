@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Timeline Display</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>IOM 75th Anniversary Timeline</title>
   <style>
     * {
       box-sizing: border-box;
@@ -11,32 +11,26 @@
       padding: 0;
     }
     html, body {
-      width: 100%;
-      height: 100%;
+      width: 1080px;
+      height: 1920px;
       overflow: hidden;
       background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: 'Gill Sans Nova', 'Gill Sans', sans-serif;
     }
     
-    /* Display Frame Container with Visualization Border */
+    /* Fixed 1080x1920 Android Kiosk Viewport Container */
     .display-viewport {
-      width: 100vw;
-      height: 100vh;
-      max-width: 1080px;
-      max-height: 1920px;
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 1920px;
       overflow: hidden;
       background: #000;
-      
-      /* Visualization border line */
       border: 3px solid #ffb81c;
-      box-shadow: 0 0 25px rgba(255, 184, 28, 0.3);
     }
 
-    /* Top Logo Header - Centered, 150px height, top: 150px, original full-color */
+    /* Top Logo Header - Exact positioning */
     .top-logo {
       position: absolute;
       top: 150px;
@@ -67,10 +61,10 @@
       position: relative;
     }
 
-    /* 1:1 Image Card Container */
+    /* 1:1 Image Card Container (1080x1080 square) */
     .card {
-      width: 100%;
-      aspect-ratio: 1 / 1;
+      width: 1080px;
+      height: 1080px;
       flex-shrink: 0;
       background-size: cover;
       background-position: center;
@@ -92,7 +86,7 @@
     .c7 { background-image: url('Img/2010s.jpg'); }
     .c8 { background-image: url('Img/2020s.jpg'); }
 
-    /* Precision Ruler Meter Tape */
+    /* Precision Ruler Meter Tape with Smooth Upward Infinite Animation */
     .meter-tape {
       position: absolute;
       top: 0;
@@ -126,7 +120,7 @@
       }
     }
 
-    /* Circular Decade Badge positioned along the timeline */
+    /* Circular Decade Badge */
     .decade-badge {
       position: absolute;
       left: 35px;
@@ -148,7 +142,6 @@
       transform-origin: center center;
     }
 
-    /* Top and bottom corner scaling motion */
     .decade-badge.peek-top {
       top: 90px;
       transform: translateY(0) scale(0.70);
@@ -174,13 +167,11 @@
       z-index: 6;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       
-      /* Pure Fade Transition */
       opacity: 0;
       transition: opacity 0.6s ease;
       pointer-events: none;
     }
 
-    /* Visible state for active center card */
     .card.active-info .info-box {
       opacity: 1;
       pointer-events: auto;
@@ -204,8 +195,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 25%;
+      width: 1080px;
+      height: 480px;
       background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
       pointer-events: none;
       z-index: 10;
@@ -214,8 +205,8 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100%;
-      height: 25%;
+      width: 1080px;
+      height: 480px;
       background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
       pointer-events: none;
       z-index: 10;
@@ -225,7 +216,6 @@
 <body>
 
   <div class="display-viewport">
-    <!-- Top Centered Full-Color IOM Logo Header -->
     <img src="Img/IOM 75.png" alt="IOM Logo" class="top-logo">
 
     <div class="wheel-overlay-top"></div>
@@ -233,7 +223,6 @@
 
     <div class="scroll-container" id="scrollContainer">
       <div class="scroll-content" id="scrollContent">
-        <!-- Vertical Ruler Meter Tape -->
         <div class="meter-tape"></div>
 
         <!-- 1950s -->
@@ -316,9 +305,7 @@
     const container = document.getElementById('scrollContainer');
     const content = document.getElementById('scrollContent');
 
-    // Duplicate set contents twice for 3 full sets
     const originalCards = Array.from(content.querySelectorAll('.card'));
-    
     for (let set = 0; set < 2; set++) {
       originalCards.forEach(card => {
         content.appendChild(card.cloneNode(true));
@@ -326,9 +313,9 @@
     }
 
     const cards = Array.from(document.querySelectorAll('.card'));
-    const totalPauseDuration = 20000; // 20 seconds total pause per slide
-    const fadeDelay = 3000;           // Wait 3 seconds before fading in the info box
-    const scrollDuration = 1000;      // 1 second scroll transition between cards
+    const totalPauseDuration = 20000;
+    const fadeDelay = 3000;
+    const scrollDuration = 1000;
     let isMoving = false;
     let fadeTimer = null;
 
