@@ -142,62 +142,65 @@
     .c7 { background-image: url('Img/2010s.jpg'); }
     .c8 { background-image: url('Img/2020s.jpg'); }
 
-    /* Precision Ruler Meter Tape */
+    /* Precision Ruler Meter Tape - Reversed Ticks Facing Left */
     .meter-tape {
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 115px;
+      left: 70px;
       width: 32px;
-      border-left: 3px solid #ffb81c;
+      border-right: 3px solid #ffc72c;
       background-image: 
-        linear-gradient(to bottom, #ffb81c 3px, transparent 3px),
-        linear-gradient(to bottom, #ffb81c 2px, transparent 2px),
-        linear-gradient(to bottom, rgba(255, 184, 28, 0.8) 2px, transparent 2px);
+        linear-gradient(to bottom, #ffc72c 3px, transparent 3px),
+        linear-gradient(to bottom, #ffc72c 2px, transparent 2px),
+        linear-gradient(to bottom, rgba(255, 199, 44, 0.8) 2px, transparent 2px);
       background-size: 
         28px 100px, 
         20px 50px,  
         12px 10px;  
       background-repeat: repeat-y;
-      background-position: left top;
+      background-position: right top;
       z-index: 5;
       pointer-events: none;
-      opacity: 0.9;
+      opacity: 0.95;
       
       animation: smoothTapeScroll 4s linear infinite;
     }
 
     @keyframes smoothTapeScroll {
-      0% { background-position: left 100px; }
-      100% { background-position: left 0px; }
+      0% { background-position: right 100px; }
+      100% { background-position: right 0px; }
     }
 
-    /* Circular Decade Badge - Full Circle Aligned with Meter Tape */
+    /* Semicircle Decade Badge - Attached directly to right of ruler line */
     .decade-badge {
       position: absolute;
-      left: 115px;
+      left: 102px; /* Placed flush against the ruler line (70px + 32px) */
       top: 50%;
       transform: translateY(-50%) scale(1);
-      width: 165px;
-      height: 165px;
+      width: 130px;
+      height: 260px;
       
-      /* Vibrant Yellow Circle */
+      /* Vibrant Yellow Semicircle */
       background-color: #ffc72c;
-      border: 4px solid #ffb81c;
-      border-radius: 50%;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), inset 0 0 10px rgba(255, 255, 255, 0.5);
+      border: none;
+      border-radius: 0 130px 130px 0;
+      box-shadow: 6px 4px 20px rgba(0, 0, 0, 0.45);
       
       display: flex;
       justify-content: center;
       align-items: center;
+      padding-left: 10px;
+      
       color: #ffffff;
       font-weight: 700;
-      font-size: 42pt;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 38pt;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      writing-mode: vertical-rl;
       
       z-index: 7;
       transition: transform 0.4s ease-out, opacity 0.4s ease-out, top 0.4s ease-out;
-      transform-origin: center center;
+      transform-origin: left center;
       pointer-events: none;
     }
 
