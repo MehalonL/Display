@@ -116,7 +116,7 @@
       position: relative;
     }
 
-    /* 1:1 Image Card Container */
+    /* 1:1 Image Card Container - Centered Padding */
     .card {
       width: 100%;
       height: 100vw;
@@ -128,7 +128,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      padding: 0 5% 4% 20%;
+      padding: 0 8% 4% 8%;
       pointer-events: none;
     }
 
@@ -172,30 +172,29 @@
       100% { background-position: right 0px; }
     }
 
-    /* Minimized Semicircle Decade Badge (Scaled down by 1/2 & shifted up) */
+    /* Minimized Semicircle Decade Badge */
     .decade-badge {
       position: absolute;
       left: 32px;
-      top: 28%; /* Shifted up slightly higher */
+      top: 28%;
       transform: translateY(-50%) scale(1);
-      width: 58px;  /* Minimized by half */
-      height: 115px; /* Minimized by half */
+      width: 85px;
+      height: 170px;
       
-      /* Vibrant Yellow Semicircle */
       background-color: #ffc72c;
       border: none;
-      border-radius: 0 58px 58px 0;
-      box-shadow: 4px 3px 12px rgba(0, 0, 0, 0.45);
+      border-radius: 0 85px 85px 0;
+      box-shadow: 6px 4px 20px rgba(0, 0, 0, 0.45);
       
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-left: 4px;
+      padding-left: 6px;
       
       color: #ffffff;
       font-weight: 700;
-      font-size: 18pt; /* Adjusted font size proportionally */
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      font-size: 26pt;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       writing-mode: vertical-rl;
       
       z-index: 7;
@@ -217,9 +216,10 @@
       opacity: 0.65;
     }
 
-    /* Text Overlay Card */
+    /* Centered Text Overlay Card */
     .info-box {
-      width: 100%;
+      width: 84%;
+      max-width: 900px;
       background: rgba(45, 45, 45, 0.55);
       backdrop-filter: blur(10px);
       border-radius: 16px;
@@ -230,6 +230,7 @@
       opacity: 0;
       transition: opacity 0.6s ease;
       pointer-events: none;
+      margin: 0 auto;
     }
 
     .card.active-info .info-box {
