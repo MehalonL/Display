@@ -22,11 +22,10 @@
     html, body {
       width: 100vw;
       height: 100vh;
-      height: 100dvh; /* Lock to dynamic viewport height */
+      height: 100dvh;
       overflow: hidden;
       background: #000;
       font-family: 'Gill Sans Nova', 'Gill Sans', sans-serif;
-      /* Touch lock settings */
       touch-action: none;
       position: fixed;
       top: 0;
@@ -35,7 +34,6 @@
       bottom: 0;
     }
     
-    /* Main Screen Viewport: Bound explicitly to physical display screen */
     .display-viewport {
       position: absolute;
       top: 0;
@@ -60,7 +58,7 @@
       pointer-events: none;
     }
 
-    /* Bottom QR & Link Wrapper - Centered & aligned with Top Logo */
+    /* Bottom QR & Link Wrapper */
     .bottom-qr-container {
       position: absolute;
       bottom: 3vh;
@@ -104,8 +102,8 @@
       overflow-y: scroll;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      touch-action: none; /* Prevents manual drag scrolling */
-      pointer-events: none; /* Lock user interaction completely */
+      touch-action: none;
+      pointer-events: none;
     }
     .scroll-container::-webkit-scrollbar {
       display: none;
@@ -149,8 +147,8 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 11%;
-      width: 25px;
+      left: 115px;
+      width: 32px;
       border-left: 3px solid #ffb81c;
       background-image: 
         linear-gradient(to bottom, #ffb81c 3px, transparent 3px),
@@ -170,48 +168,48 @@
     }
 
     @keyframes smoothTapeScroll {
-      0% {
-        background-position: left 100px;
-      }
-      100% {
-        background-position: left 0px;
-      }
+      0% { background-position: left 100px; }
+      100% { background-position: left 0px; }
     }
 
-    /* Circular Decade Badge */
+    /* Circular Decade Badge - Fixed Alignment with Meter Tape */
     .decade-badge {
       position: absolute;
-      left: 3%;
+      left: 115px;
       top: 50%;
       transform: translateY(-50%) scale(1);
-      width: 15vw;
-      height: 15vw;
-      max-width: 160px;
-      max-height: 160px;
-      background-color: #ffb81c;
+      width: 165px;
+      height: 165px;
+      
+      /* Vibrant Yellow Circle */
+      background-color: #ffc72c;
+      border: 4px solid #ffb81c;
       border-radius: 50%;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), inset 0 0 10px rgba(255, 255, 255, 0.5);
+      
       display: flex;
       justify-content: center;
       align-items: center;
       color: #ffffff;
-      font-weight: 600;
-      font-size: 4vw;
+      font-weight: 700;
+      font-size: 42pt;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      
       z-index: 7;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.4s ease-out, opacity 0.4s ease-out, top 0.4s ease-out;
       transform-origin: center center;
       pointer-events: none;
     }
 
     .decade-badge.peek-top {
-      top: 8%;
+      top: 90px;
       transform: translateY(0) scale(0.70);
       opacity: 0.65;
     }
 
     .decade-badge.peek-bottom {
       top: auto;
-      bottom: 8%;
+      bottom: 90px;
       transform: translateY(0) scale(0.70);
       opacity: 0.65;
     }
@@ -226,7 +224,6 @@
       color: #ffffff;
       z-index: 6;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      
       opacity: 0;
       transition: opacity 0.6s ease;
       pointer-events: none;
@@ -248,7 +245,7 @@
       margin-bottom: 0;
     }
 
-    /* Gradient Overlays for Edge Peeking */
+    /* Gradient Overlays */
     .wheel-overlay-top {
       position: absolute;
       top: 0;
