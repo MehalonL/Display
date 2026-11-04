@@ -48,11 +48,11 @@
     /* Top Logo Header */
     .top-logo {
       position: absolute;
-      top: 5vh;
+      top: 4vh;
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
-      height: 8vh;
+      height: 7vh;
       width: auto;
       object-fit: contain;
       pointer-events: none;
@@ -142,12 +142,12 @@
     .c7 { background-image: url('Img/2010s.jpg'); }
     .c8 { background-image: url('Img/2020s.jpg'); }
 
-    /* Precision Ruler Meter Tape - Reversed Ticks Facing Left */
+    /* Far-Left Meter Tape */
     .meter-tape {
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 70px;
+      left: 0;
       width: 32px;
       border-right: 3px solid #ffc72c;
       background-image: 
@@ -172,30 +172,30 @@
       100% { background-position: right 0px; }
     }
 
-    /* Semicircle Decade Badge - Attached directly to right of ruler line */
+    /* Minimized Semicircle Decade Badge (Scaled down by 1/2 & shifted up) */
     .decade-badge {
       position: absolute;
-      left: 102px; /* Placed flush against the ruler line (70px + 32px) */
-      top: 50%;
+      left: 32px;
+      top: 28%; /* Shifted up slightly higher */
       transform: translateY(-50%) scale(1);
-      width: 130px;
-      height: 260px;
+      width: 58px;  /* Minimized by half */
+      height: 115px; /* Minimized by half */
       
       /* Vibrant Yellow Semicircle */
       background-color: #ffc72c;
       border: none;
-      border-radius: 0 130px 130px 0;
-      box-shadow: 6px 4px 20px rgba(0, 0, 0, 0.45);
+      border-radius: 0 58px 58px 0;
+      box-shadow: 4px 3px 12px rgba(0, 0, 0, 0.45);
       
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-left: 10px;
+      padding-left: 4px;
       
       color: #ffffff;
       font-weight: 700;
-      font-size: 38pt;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      font-size: 18pt; /* Adjusted font size proportionally */
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       writing-mode: vertical-rl;
       
       z-index: 7;
@@ -205,14 +205,14 @@
     }
 
     .decade-badge.peek-top {
-      top: 90px;
+      top: 8%;
       transform: translateY(0) scale(0.70);
       opacity: 0.65;
     }
 
     .decade-badge.peek-bottom {
       top: auto;
-      bottom: 90px;
+      bottom: 8%;
       transform: translateY(0) scale(0.70);
       opacity: 0.65;
     }
@@ -220,7 +220,7 @@
     /* Text Overlay Card */
     .info-box {
       width: 100%;
-      background: rgba(45, 45, 45, 0.5);
+      background: rgba(45, 45, 45, 0.55);
       backdrop-filter: blur(10px);
       border-radius: 16px;
       padding: 3% 4%;
@@ -419,7 +419,7 @@
         badge.style.top = '';
 
         if (index === centerIndex) {
-          badge.style.top = '50%';
+          badge.style.top = '28%';
           badge.style.transform = 'translateY(-50%) scale(1)';
           badge.style.opacity = '1.0';
           
@@ -440,7 +440,7 @@
             badge.style.transform = 'scale(0.70)';
             badge.style.opacity = '0.65';
           } else {
-            badge.style.top = '50%';
+            badge.style.top = '28%';
             badge.style.transform = 'translateY(-50%) scale(0.5)';
             badge.style.opacity = '0.3';
           }
