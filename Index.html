@@ -35,7 +35,7 @@
       bottom: 0;
     }
     
-    /* Main Screen Viewport: Bound explicitly to physical display screen */
+    /* Main Screen Viewport: Bound explicitly to physical display screen (Border Removed) */
     .display-viewport {
       position: absolute;
       top: 0;
@@ -44,7 +44,6 @@
       height: 100%;
       overflow: hidden;
       background: #000;
-      border: 3px solid #ffb81c;
       touch-action: none;
     }
 
@@ -323,13 +322,13 @@
   </div>
 
   <script>
-    // HARD TOUCH LOCK: Prevent all user touches, swipes, pinches, and scrolls
+    /* TOUCH LOCK */
     document.addEventListener('touchstart', function(e) { e.preventDefault(); }, { passive: false });
     document.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
     document.addEventListener('touchend', function(e) { e.preventDefault(); }, { passive: false });
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
 
-    // DYNAMIC SCREEN LOCK: Lock container to actual window height
+    /* DYNAMIC SCREEN LOCK */
     function lockScreenSize() {
       const viewport = document.getElementById('viewport');
       const realHeight = window.innerHeight || document.documentElement.clientHeight;
