@@ -2,31 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <title>IOM 75th Anniversary Timeline</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      /* Prevent text/image selection and touch highlight */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
     
     html, body {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh; /* Lock to dynamic viewport height */
+      overflow: hidden;
+      background: #000;
+      font-family: 'Gill Sans Nova', 'Gill Sans', sans-serif;
+      /* Touch lock settings */
+      touch-action: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    
+    /* Main Screen Viewport: Bound explicitly to physical display screen */
+    .display-viewport {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
       background: #000;
-      font-family: 'Gill Sans Nova', 'Gill Sans', sans-serif;
-    }
-    
-    /* Main Screen Viewport: Fills 100% of physical display */
-    .display-viewport {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      background: #000;
       border: 3px solid #ffb81c;
+      touch-action: none;
     }
 
     /* Top Logo Header */
@@ -48,6 +67,8 @@
       overflow-y: scroll;
       scrollbar-width: none;
       -ms-overflow-style: none;
+      touch-action: none; /* Prevents manual drag scrolling */
+      pointer-events: none; /* Lock user interaction completely */
     }
     .scroll-container::-webkit-scrollbar {
       display: none;
@@ -60,7 +81,7 @@
       position: relative;
     }
 
-    /* Card height tied directly to viewport width to stay 1:1 */
+    /* 1:1 Image Card Container */
     .card {
       width: 100%;
       height: 100vw;
@@ -73,6 +94,7 @@
       align-items: flex-end;
       justify-content: center;
       padding: 0 5% 4% 20%;
+      pointer-events: none;
     }
 
     /* Image Background Classes */
@@ -141,6 +163,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.4s ease-out, opacity 0.4s ease-out, top 0.4s ease-out;
       transform-origin: center center;
+      pointer-events: none;
     }
 
     .decade-badge.peek-top {
@@ -174,7 +197,6 @@
 
     .card.active-info .info-box {
       opacity: 1;
-      pointer-events: auto;
     }
 
     .info-box p {
@@ -214,7 +236,7 @@
 </head>
 <body>
 
-  <div class="display-viewport">
+  <div class="display-viewport" id="viewport">
     <img src="Img/IOM 75.png" alt="IOM Logo" class="top-logo">
 
     <div class="wheel-overlay-top"></div>
@@ -301,6 +323,23 @@
   </div>
 
   <script>
+    // HARD TOUCH LOCK: Prevent all user touches, swipes, pinches, and scrolls
+    document.addEventListener('touchstart', function(e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener('touchend', function(e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+    // DYNAMIC SCREEN LOCK: Lock container to actual window height
+    function lockScreenSize() {
+      const viewport = document.getElementById('viewport');
+      const realHeight = window.innerHeight || document.documentElement.clientHeight;
+      viewport.style.height = realHeight + 'px';
+    }
+
+    window.addEventListener('resize', lockScreenSize);
+    window.addEventListener('load', lockScreenSize);
+    lockScreenSize();
+
     const container = document.getElementById('scrollContainer');
     const content = document.getElementById('scrollContent');
 
