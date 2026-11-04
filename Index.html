@@ -19,24 +19,24 @@
       font-family: 'Gill Sans Nova', 'Gill Sans', sans-serif;
     }
     
-    /* Native fluid container that fills Magic Player's box completely */
+    /* Main Screen Viewport: Fills 100% of physical display */
     .display-viewport {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       overflow: hidden;
       background: #000;
       border: 3px solid #ffb81c;
     }
 
-    /* Top Logo Header - Centered, proportional height */
+    /* Top Logo Header */
     .top-logo {
       position: absolute;
-      top: 7.8%; /* Proportional to 1920px height */
+      top: 5vh;
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
-      height: 7.8%;
+      height: 8vh;
       width: auto;
       object-fit: contain;
       pointer-events: none;
@@ -60,10 +60,10 @@
       position: relative;
     }
 
-    /* 1:1 Image Card Container (Square based on full width) */
+    /* Card height tied directly to viewport width to stay 1:1 */
     .card {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: 100vw;
       flex-shrink: 0;
       background-size: cover;
       background-position: center;
@@ -72,7 +72,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      padding: 0 4.6% 2.3% 19.4%;
+      padding: 0 5% 4% 20%;
     }
 
     /* Image Background Classes */
@@ -90,8 +90,8 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 10.6%;
-      width: 3%;
+      left: 11%;
+      width: 25px;
       border-left: 3px solid #ffb81c;
       background-image: 
         linear-gradient(to bottom, #ffb81c 3px, transparent 3px),
@@ -122,11 +122,13 @@
     /* Circular Decade Badge */
     .decade-badge {
       position: absolute;
-      left: 3.2%;
+      left: 3%;
       top: 50%;
       transform: translateY(-50%) scale(1);
-      width: 15.2%;
-      aspect-ratio: 1 / 1;
+      width: 15vw;
+      height: 15vw;
+      max-width: 160px;
+      max-height: 160px;
       background-color: #ffb81c;
       border-radius: 50%;
       display: flex;
@@ -134,7 +136,7 @@
       align-items: center;
       color: #ffffff;
       font-weight: 600;
-      font-size: 3.8vw;
+      font-size: 4vw;
       z-index: 7;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.4s ease-out, opacity 0.4s ease-out, top 0.4s ease-out;
@@ -142,26 +144,25 @@
     }
 
     .decade-badge.peek-top {
-      top: 4.7%;
+      top: 8%;
       transform: translateY(0) scale(0.70);
       opacity: 0.65;
     }
 
     .decade-badge.peek-bottom {
       top: auto;
-      bottom: 4.7%;
+      bottom: 8%;
       transform: translateY(0) scale(0.70);
       opacity: 0.65;
     }
 
-    /* Text Overlay Card - Pure Fade Only */
+    /* Text Overlay Card */
     .info-box {
       width: 100%;
-      max-width: 76%;
-      background: rgba(45, 45, 45, 0.425);
+      background: rgba(45, 45, 45, 0.5);
       backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 2.2% 2.6%;
+      border-radius: 16px;
+      padding: 3% 4%;
       color: #ffffff;
       z-index: 6;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
@@ -180,9 +181,8 @@
       font-size: 1.8vw;
       line-height: 1.35;
       font-weight: 600;
-      font-style: normal;
       color: #e0e0e0;
-      margin-bottom: 1.2vh;
+      margin-bottom: 8px;
     }
 
     .info-box p:last-child {
@@ -195,7 +195,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 25%;
+      height: 25vh;
       background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
       pointer-events: none;
       z-index: 10;
@@ -205,7 +205,7 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 25%;
+      height: 25vh;
       background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
       pointer-events: none;
       z-index: 10;
