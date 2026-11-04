@@ -60,21 +60,42 @@
       pointer-events: none;
     }
 
-    /* Bottom QR Code - Centered & aligned with Top Logo */
-    .bottom-qr {
+    /* Bottom QR & Link Wrapper - Centered & aligned with Top Logo */
+    .bottom-qr-container {
       position: absolute;
-      bottom: 4vh;
+      bottom: 3vh;
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .bottom-qr {
       height: 8vh;
       width: auto;
       object-fit: contain;
-      pointer-events: none;
       background: rgba(255, 255, 255, 0.95);
       padding: 8px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .qr-link-text {
+      color: #ffb81c;
+      font-weight: 600;
+      font-size: 1.4vw;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      white-space: nowrap;
     }
 
     .scroll-container {
@@ -254,7 +275,11 @@
 
   <div class="display-viewport" id="viewport">
     <img src="Img/IOM 75.png" alt="IOM Logo" class="top-logo">
-    <img src="Img/qr-code.png" alt="QR Code" class="bottom-qr">
+    
+    <div class="bottom-qr-container">
+      <img src="Img/qr-code.png" alt="QR Code" class="bottom-qr">
+      <div class="qr-link-text">iom.int/iom-history</div>
+    </div>
 
     <div class="wheel-overlay-top"></div>
     <div class="wheel-overlay-bottom"></div>
