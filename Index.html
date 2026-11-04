@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>IOM 75th Anniversary Timeline</title>
   <style>
     * {
@@ -12,16 +12,26 @@
     }
     
     html, body {
-      width: 1080px;
-      height: 1920px;
-      margin: 0;
-      padding: 0;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       background: #000;
       font-family: 'Gill Sans Nova', 'Gill Sans', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Scaling Wrapper: Forces exact 1080x1920 canvas and scales to fit the screen */
+    .screen-scaler {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      transform-origin: center center;
+      background: #000;
+      overflow: hidden;
     }
     
-    /* Fixed 1080x1920 Full Viewport Frame */
     .display-viewport {
       position: absolute;
       top: 0;
@@ -218,93 +228,110 @@
 </head>
 <body>
 
-  <div class="display-viewport">
-    <img src="Img/IOM 75.png" alt="IOM Logo" class="top-logo">
+  <div class="screen-scaler" id="screenScaler">
+    <div class="display-viewport">
+      <img src="Img/IOM 75.png" alt="IOM Logo" class="top-logo">
 
-    <div class="wheel-overlay-top"></div>
-    <div class="wheel-overlay-bottom"></div>
+      <div class="wheel-overlay-top"></div>
+      <div class="wheel-overlay-bottom"></div>
 
-    <div class="scroll-container" id="scrollContainer">
-      <div class="scroll-content" id="scrollContent">
-        <div class="meter-tape"></div>
+      <div class="scroll-container" id="scrollContainer">
+        <div class="scroll-content" id="scrollContent">
+          <div class="meter-tape"></div>
 
-        <!-- 1950s -->
-        <div class="card c1">
-          <div class="decade-badge">1950s</div>
-          <div class="info-box">
-            <p>The Organization was founded as the Provisional Intergovernmental Committee for the Movement of Migrants from Europe (PICMME) in 1951 as Europe struggled with vast post-war displacement. PICMME was established to help governments find safe destinations for people uprooted by conflict and seeking stability.</p>
-            <p>As needs increased, PICMME became the Intergovernmental Committee for European Migration (ICEM), expanding its capacity to manage movements through stronger coordination, registration and international cooperation. ICEM quickly came to play a central role in the opening of dignified pathways for those unable to return home.</p>
+          <!-- 1950s -->
+          <div class="card c1">
+            <div class="decade-badge">1950s</div>
+            <div class="info-box">
+              <p>The Organization was founded as the Provisional Intergovernmental Committee for the Movement of Migrants from Europe (PICMME) in 1951 as Europe struggled with vast post-war displacement. PICMME was established to help governments find safe destinations for people uprooted by conflict and seeking stability.</p>
+              <p>As needs increased, PICMME became the Intergovernmental Committee for European Migration (ICEM), expanding its capacity to manage movements through stronger coordination, registration and international cooperation. ICEM quickly came to play a central role in the opening of dignified pathways for those unable to return home.</p>
+            </div>
           </div>
-        </div>
 
-        <!-- 1960s -->
-        <div class="card c2">
-          <div class="decade-badge">1960s</div>
-          <div class="info-box">
-            <p>The 1960s marked the consolidation of the Organization as a key actor in global mobility. By 1960, ICEM had directly assisted one million migrants, reflecting its expanding logistical capacity and central role in post-war movement management. Operating in a cold war environment, it continued to open safe routes and respond quickly to emerging displacement situations.</p>
-            <p>In the mid-1960s, ICEM launched early migration for development initiatives, helping to recruit or return skilled professionals to developing countries, particularly in Latin America. In 1968, it organized the resettlement of 40,000 Czechoslovak refugees, strengthening international trust in its ability to manage politically sensitive movements with discretion.</p>
+          <!-- 1960s -->
+          <div class="card c2">
+            <div class="decade-badge">1960s</div>
+            <div class="info-box">
+              <p>The 1960s marked the consolidation of the Organization as a key actor in global mobility. By 1960, ICEM had directly assisted one million migrants, reflecting its expanding logistical capacity and central role in post-war movement management. Operating in a cold war environment, it continued to open safe routes and respond quickly to emerging displacement situations.</p>
+              <p>In the mid-1960s, ICEM launched early migration for development initiatives, helping to recruit or return skilled professionals to developing countries, particularly in Latin America. In 1968, it organized the resettlement of 40,000 Czechoslovak refugees, strengthening international trust in its ability to manage politically sensitive movements with discretion.</p>
+            </div>
           </div>
-        </div>
 
-        <!-- 1970s -->
-        <div class="card c3">
-          <div class="decade-badge">1970s</div>
-          <div class="info-box">
-            <p>The 1970s saw ICEM take on rapidly expanding humanitarian responsibilities. It assisted Jewish refugees leaving the Soviet Union and managed growing resettlement movements across several regions as displacement increased around the world.</p>
-            <p>Throughout the decade, ICEM helped over 130,000 people in Bangladesh and Nepal reach safety, supported the evacuation of Asians from Uganda and made new beginnings possible for more than 31,000 Chileans fleeing persecution. By the middle of the decade, it had become a global forum on migration and had launched the Return of Talent programme. In 1975, it carried out one of its defining operations: large-scale assistance to Indo-Chinese refugees.</p>
+          <!-- 1970s -->
+          <div class="card c3">
+            <div class="decade-badge">1970s</div>
+            <div class="info-box">
+              <p>The 1970s saw ICEM take on rapidly expanding humanitarian responsibilities. It assisted Jewish refugees leaving the Soviet Union and managed growing resettlement movements across several regions as displacement increased around the world.</p>
+              <p>Throughout the decade, ICEM helped over 130,000 people in Bangladesh and Nepal reach safety, supported the evacuation of Asians from Uganda and made new beginnings possible for more than 31,000 Chileans fleeing persecution. By the middle of the decade, it had become a global forum on migration and had launched the Return of Talent programme. In 1975, it carried out one of its defining operations: large-scale assistance to Indo-Chinese refugees.</p>
+            </div>
           </div>
-        </div>
 
-        <!-- 1980s -->
-        <div class="card c4">
-          <div class="decade-badge">1980s</div>
-          <div class="info-box">
-            <p>The 1980s marked a turning point as the Organization adopted a new name reflecting its broadened global mandate, becoming the Intergovernmental Committee for Migration (ICM). By this time, it had already assisted millions of migrants, and its scope continued to grow amid shifting geopolitical landscapes.</p>
-            <p>Further strengthening its dual focus on mobility and development, ICM expanded its migration for development programmes into Africa and later Asia, enabling skilled professionals to support developing economies. At the same time, it maintained large-scale humanitarian operations, including providing assistance to 1 million Indo-Chinese refugees between 1975 and 1986. The Organization's identity and reach continued to evolve, culminating, in 1989, with it officially becoming the International Organization for Migration (IOM). This transformation ushered in a new period for the Organization, defined by global mobility, expanding field operations, and a strengthened commitment to dignity and protection for people on the move.</p>
+          <!-- 1980s -->
+          <div class="card c4">
+            <div class="decade-badge">1980s</div>
+            <div class="info-box">
+              <p>The 1980s marked a turning point as the Organization adopted a new name reflecting its broadened global mandate, becoming the Intergovernmental Committee for Migration (ICM). By this time, it had already assisted millions of migrants, and its scope continued to grow amid shifting geopolitical landscapes.</p>
+              <p>Further strengthening its dual focus on mobility and development, ICM expanded its migration for development programmes into Africa and later Asia, enabling skilled professionals to support developing economies. At the same time, it maintained large-scale humanitarian operations, including providing assistance to 1 million Indo-Chinese refugees between 1975 and 1986. The Organization's identity and reach continued to evolve, culminating, in 1989, with it officially becoming the International Organization for Migration (IOM). This transformation ushered in a new period for the Organization, defined by global mobility, expanding field operations, and a strengthened commitment to dignity and protection for people on the move.</p>
+            </div>
           </div>
-        </div>
 
-        <!-- 1990s -->
-        <div class="card c5">
-          <div class="decade-badge">1990s</div>
-          <div class="info-box">
-            <p>The 1990s saw sudden geopolitical shifts after the fall of the Berlin Wall and German reunification, leaving many people searching for safety. IOM became a steady presence along those uncertain routes. Early in the decade, it supported the return of migrants stranded during the Gulf crisis, offering guidance as borders closed and options vanished. Across a transforming Europe, the Organization helped families from the Balkans displaced by conflict reunite and rebuild.</p>
-            <p>Later in the decade, IOM assisted returns to Mozambique and Rwanda, helping to heal communities scarred by conflict. When Hurricane Mitch devastated Central America in 1998, the Organization supported emergency efforts in Honduras. At the end of the decade, the evacuation of Kosovar families again highlighted IOM's role in helping people navigate profound upheaval with safety and dignity.</p>
+          <!-- 1990s -->
+          <div class="card c5">
+            <div class="decade-badge">1990s</div>
+            <div class="info-box">
+              <p>The 1990s saw sudden geopolitical shifts after the fall of the Berlin Wall and German reunification, leaving many people searching for safety. IOM became a steady presence along those uncertain routes. Early in the decade, it supported the return of migrants stranded during the Gulf crisis, offering guidance as borders closed and options vanished. Across a transforming Europe, the Organization helped families from the Balkans displaced by conflict reunite and rebuild.</p>
+              <p>Later in the decade, IOM assisted returns to Mozambique and Rwanda, helping to heal communities scarred by conflict. When Hurricane Mitch devastated Central America in 1998, the Organization supported emergency efforts in Honduras. At the end of the decade, the evacuation of Kosovar families again highlighted IOM's role in helping people navigate profound upheaval with safety and dignity.</p>
+            </div>
           </div>
-        </div>
 
-        <!-- 2000s -->
-        <div class="card c6">
-          <div class="decade-badge">2000s</div>
-          <div class="info-box">
-            <p>The early 2000s unfolded against a backdrop of tentative recovery, where people began moving back to places that had been reshaped by conflict. IOM supported large-scale returns to Timor-Leste, helping communities rebuild lives once uprooted by turmoil. Across regions emerging from war, the Organization assisted families stepping out of prolonged violence and transitioning into civilian life.</p>
-            <p>Climate impacts also redrew the boundaries of safety. When the Indian Ocean tsunami struck in 2004, devastating coastlines across several countries, IOM provided shelter, stability and an initial sense of grounding for survivors coping with sudden loss caused by the disaster. Throughout the decade, the Organization became a steady companion for communities navigating the long arc of recovery.</p>
+          <!-- 2000s -->
+          <div class="card c6">
+            <div class="decade-badge">2000s</div>
+            <div class="info-box">
+              <p>The early 2000s unfolded against a backdrop of tentative recovery, where people began moving back to places that had been reshaped by conflict. IOM supported large-scale returns to Timor-Leste, helping communities rebuild lives once uprooted by turmoil. Across regions emerging from war, the Organization assisted families stepping out of prolonged violence and transitioning into civilian life.</p>
+              <p>Climate impacts also redrew the boundaries of safety. When the Indian Ocean tsunami struck in 2004, devastating coastlines across several countries, IOM provided shelter, stability and an initial sense of grounding for survivors coping with sudden loss caused by the disaster. Throughout the decade, the Organization became a steady companion for communities navigating the long arc of recovery.</p>
+            </div>
           </div>
-        </div>
 
-        <!-- 2010s -->
-        <div class="card c7">
-          <div class="decade-badge">2010s</div>
-          <div class="info-box">
-            <p>The 2010s brought overlapping crises that reshaped global mobility and expanded IOM's humanitarian role. The Organization responded to major displacement driven by conflicts in the Syrian Arab Republic, Iraq and the wider Middle East, assisting people uprooted by violence and shifting frontlines. The Arab Spring and its aftermath also generated new movement patterns, prompting evacuations, transit assistance and protection for migrants stranded as conditions rapidly changed.</p>
-            <p>Throughout the decade, mobility became both more visible and more vulnerable. IOM expanded cooperation with States, launched new tools to trace lives lost at sea, and supported families uprooted by conflicts in the Syrian Arab Republic and beyond, ensuring dignity in the face of uncertainty.</p>
+          <!-- 2010s -->
+          <div class="card c7">
+            <div class="decade-badge">2010s</div>
+            <div class="info-box">
+              <p>The 2010s brought overlapping crises that reshaped global mobility and expanded IOM's humanitarian role. The Organization responded to major displacement driven by conflicts in the Syrian Arab Republic, Iraq and the wider Middle East, assisting people uprooted by violence and shifting frontlines. The Arab Spring and its aftermath also generated new movement patterns, prompting evacuations, transit assistance and protection for migrants stranded as conditions rapidly changed.</p>
+              <p>Throughout the decade, mobility became both more visible and more vulnerable. IOM expanded cooperation with States, launched new tools to trace lives lost at sea, and supported families uprooted by conflicts in the Syrian Arab Republic and beyond, ensuring dignity in the face of uncertainty.</p>
+            </div>
           </div>
-        </div>
 
-        <!-- 2020s -->
-        <div class="card c8">
-          <div class="decade-badge">2020s</div>
-          <div class="info-box">
-            <p>The 2020s opened to an unprecedented global stillness as the COVID-19 pandemic paused mobility while heightening the need for protection. IOM supported stranded migrants, monitored rapidly shifting mobility patterns and assisted communities facing sudden isolation and uncertainty. In these altered conditions, the Organization worked to keep essential pathways open for those most affected.</p>
-            <p>At the same time, climate impacts and prolonged crises strained regions already living with deep fragility. From Afghanistan and the Horn of Africa to Mexico and Central America, the Organization expanded life-saving assistance, strengthening health, shelter and protection systems that were being strained by cascading shocks. These years of disruption shone a light on the link between migration and resilience, and IOM remained alongside people adapting to a world in transformation.</p>
+          <!-- 2020s -->
+          <div class="card c8">
+            <div class="decade-badge">2020s</div>
+            <div class="info-box">
+              <p>The 2020s opened to an unprecedented global stillness as the COVID-19 pandemic paused mobility while heightening the need for protection. IOM supported stranded migrants, monitored rapidly shifting mobility patterns and assisted communities facing sudden isolation and uncertainty. In these altered conditions, the Organization worked to keep essential pathways open for those most affected.</p>
+              <p>At the same time, climate impacts and prolonged crises strained regions already living with deep fragility. From Afghanistan and the Horn of Africa to Mexico and Central America, the Organization expanded life-saving assistance, strengthening health, shelter and protection systems that were being strained by cascading shocks. These years of disruption shone a light on the link between migration and resilience, and IOM remained alongside people adapting to a world in transformation.</p>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
 
   <script>
+    // Auto-scaler script to match Magic Player's container dimensions perfectly
+    function scaleToFit() {
+      const scaler = document.getElementById('screenScaler');
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const scaleX = windowWidth / 1080;
+      const scaleY = windowHeight / 1920;
+      const scale = Math.min(scaleX, scaleY);
+      scaler.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', scaleToFit);
+    window.addEventListener('load', scaleToFit);
+    scaleToFit();
+
     const container = document.getElementById('scrollContainer');
     const content = document.getElementById('scrollContent');
 
@@ -377,8 +404,6 @@
       updateScaleMotion(false);
     }
 
-    window.addEventListener('resize', resetToCenter);
-    
     container.addEventListener('scroll', () => {
       if (!isMoving) {
         updateScaleMotion(false);
