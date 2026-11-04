@@ -35,7 +35,7 @@
       bottom: 0;
     }
     
-    /* Main Screen Viewport: Bound explicitly to physical display screen (Border Removed) */
+    /* Main Screen Viewport: Bound explicitly to physical display screen */
     .display-viewport {
       position: absolute;
       top: 0;
@@ -58,6 +58,23 @@
       width: auto;
       object-fit: contain;
       pointer-events: none;
+    }
+
+    /* Bottom QR Code - Centered & aligned with Top Logo */
+    .bottom-qr {
+      position: absolute;
+      bottom: 4vh;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      height: 8vh;
+      width: auto;
+      object-fit: contain;
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 8px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     }
 
     .scroll-container {
@@ -237,6 +254,7 @@
 
   <div class="display-viewport" id="viewport">
     <img src="Img/IOM 75.png" alt="IOM Logo" class="top-logo">
+    <img src="Img/qr-code.png" alt="QR Code" class="bottom-qr">
 
     <div class="wheel-overlay-top"></div>
     <div class="wheel-overlay-bottom"></div>
